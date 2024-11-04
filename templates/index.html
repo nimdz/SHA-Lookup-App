@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SHA Reverse Lookup Tool</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body
+    style="
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    "
+  >
+    <h1 style="text-align: center; color: #2c3e50">SHA Reverse Lookup Tool</h1>
+
+    <form
+      action="/add"
+      method="post"
+      style="
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        max-width: 500px;
+      "
+    >
+      <label
+        for="original_input"
+        style="display: block; margin-bottom: 8px; font-weight: bold"
+        >Enter Original Input to Hash:</label
+      >
+      <input
+        type="text"
+        id="original_input"
+        name="original_input"
+        required
+        style="
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 20px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          font-size: 16px;
+        "
+      />
+      <button
+        type="submit"
+        style="
+          background-color: #3498db;
+          color: white;
+          padding: 10px 15px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 16px;
+          transition: background-color 0.3s ease;
+        "
+      >
+        Hash & Store
+      </button>
+    </form>
+
+    <form
+      action="/lookup"
+      method="post"
+      style="
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        max-width: 500px;
+      "
+    >
+      <label
+        for="sha_hash"
+        style="display: block; margin-bottom: 8px; font-weight: bold"
+        >SHA Hash to Lookup:</label
+      >
+      <input
+        type="text"
+        id="sha_hash"
+        name="sha_hash"
+        required
+        style="
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 20px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          font-size: 16px;
+        "
+      />
+      <button
+        type="submit"
+        style="
+          background-color: #3498db;
+          color: white;
+          padding: 10px 15px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 16px;
+          transition: background-color 0.3s ease;
+        "
+      >
+        Lookup
+      </button>
+    </form>
+
+    <a
+      href="/view"
+      style="
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #3498db;
+        font-weight: bold;
+      "
+      >View Database</a
+    >
+
+    {% with messages = get_flashed_messages(with_categories=True) %} {% if
+    messages %}
+    <ul style="list-style-type: none; padding: 0">
+      {% for category, message in messages %}
+      <li
+        class="{{ 'success' if category == 'success' else 'error' }}"
+        style="
+          margin: 10px 0;
+          padding: 10px;
+          border-radius: 4px;
+          color: #ffffff;
+        "
+      >
+        {{ message }}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
+  </body>
+</html>
